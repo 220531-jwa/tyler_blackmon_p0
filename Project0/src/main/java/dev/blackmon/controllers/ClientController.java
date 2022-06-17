@@ -55,6 +55,7 @@ public class ClientController {
 
     public static void updateClient(Context ctx) {
         Client updatedClient = ctx.bodyAsClass(Client.class);
+        updatedClient.setId(Integer.parseInt(ctx.pathParam("id")));
 
         try {
             Client result = clientService.updateClient(updatedClient);

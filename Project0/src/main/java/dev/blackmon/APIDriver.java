@@ -1,5 +1,6 @@
 package dev.blackmon;
 
+import dev.blackmon.controllers.AccountController;
 import dev.blackmon.controllers.ClientController;
 import io.javalin.Javalin;
 
@@ -22,7 +23,17 @@ public class APIDriver {
                     put(ClientController::updateClient);
                     delete(ClientController::deleteClient);
                     path("/accounts", () -> {
-
+                        get(AccountController::getAllAccountsForClient);
+                        post(AccountController::createAccount);
+                        path("/{accountid}", () -> {
+                            get(AccountController::getAccountById);
+                            put(AccountController::updateAccount);
+                            delete(AccountController::deleteAccount);
+                            patch(AccountController::updateBalance);
+                            path("/transfer/{transferid}", () -> {
+                                patch(AccountController::transferFromAccounts);
+                            });
+                        });
                     });
                 });
             });

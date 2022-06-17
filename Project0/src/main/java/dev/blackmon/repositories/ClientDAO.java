@@ -119,10 +119,8 @@ public class ClientDAO {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                System.out.println("yes");
                 return true;
             } else {
-                System.out.println("no");
                 return false;
             }
         } catch (SQLException e) {
